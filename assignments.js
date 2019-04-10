@@ -1,3 +1,5 @@
+const BST = require('./BinarySearchTree')
+
 
 // How many Searches
 
@@ -61,3 +63,49 @@ const traverse = function (arr, start, end) {
 
 
 traverse(preOrderTraversal, 0, preOrderTraversal.length-1);
+
+
+// Implement different tree traversals
+
+const sample = new BST();
+
+sample.insert(25,25);
+sample.insert(15,15);
+sample.insert(50,50);
+sample.insert(10,10);
+sample.insert(24,24);
+sample.insert(35,35);
+sample.insert(70,70);
+sample.insert(4,4);
+sample.insert(12,12);
+sample.insert(18,18);
+sample.insert(31,31);
+sample.insert(44,44);
+sample.insert(66,66);
+sample.insert(90,90);
+sample.insert(22,22);
+
+console.log(sample);
+
+
+const inOrder = function (tree) {
+  if (tree.left) {  inOrder(tree.left);  }
+  console.log(tree.key);
+  if (tree.right) { inOrder(tree.right); }
+};
+
+const preOrder = function (tree) {
+  console.log(tree.key);
+  if (tree.left) {  preOrder(tree.left);  }
+  if (tree.right) { preOrder(tree.right); }
+};
+
+const postOrder = function (tree) {
+  if (tree.left) {  postOrder(tree.left);  }
+  if (tree.right) { postOrder(tree.right); }
+  console.log(tree.key);
+};
+
+// preOrder(sample);
+// inOrder(sample);
+// postOrder(sample);
