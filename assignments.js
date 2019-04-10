@@ -30,12 +30,14 @@ const preOrderTraversal = [35, 25, 15, 14, 19, 27, 89, 79, 91, 90];
 const traverse = function (arr, start, end) {
 
   if (start >= end) {
-    console.log(arr[start]);
+
+    if (arr[start] !== undefined) {
+      console.log(arr[start]);
+    }
     return;
   }
 
   const node = arr[start];
-
 
   // cal indexes for left
   let leftStart = start + 1;
@@ -44,16 +46,18 @@ const traverse = function (arr, start, end) {
   while (arr[leftEnd] < node) {    // maybe <=
     leftEnd++;
   }
+  leftEnd--;
+
   traverse(arr, leftStart, leftEnd);
 
   // cal indexes for right
-
   let rightStart = leftEnd + 1;
   let rightEnd   = end;
+
   traverse(arr, rightStart, rightEnd);
 
   console.log(node);
-
 };
+
 
 traverse(preOrderTraversal, 0, preOrderTraversal.length-1);
