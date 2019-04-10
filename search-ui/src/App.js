@@ -15,6 +15,7 @@ class App extends Component {
               38,28,13,17,69,90,1,6,7,64,43,9,73,80,98,46,27,22,87,49,83,6,39,
               42,51,54,84,34,53,78,40,14,5 ],
       result: null,
+      error: null,
     };
 
     this.handleTargetChange = this.handleTargetChange.bind(this);
@@ -30,12 +31,13 @@ class App extends Component {
 
     const num = Number.parseInt(ev.target.value, 10);
     if (Number.isNaN(num)) {
-      console.log('Target is not a number')
+      return this.setState({ result: null, error: 'Target is not a number' });
     }
 
     this.setState({
       target: num,
       result: null,
+      error: null,
     });
   }
 
@@ -57,12 +59,17 @@ class App extends Component {
     return (
       <div className="App">
 
+      <div>
         <label htmlFor="target">Search Target</label>
         <input id="target" name="target" type="text" onChange={this.handleTargetChange}></input>
+      </div>
 
+      <div>
         <button id="linear-search" onClick={this.handleLinearSearch}>Linear Search</button>
         <button id="binary-search" onClick={this.handleBinarySearch}>Binary Search</button>
+      </div>
 
+        <div id="error">{this.state.error}</div>
         <div id="result">{this.state.result}</div>
       </div>
     );
