@@ -1,5 +1,5 @@
-const BST = require('./BinarySearchTree')
-
+const BST = require('./BinarySearchTree');
+const Queue = require('./Queue');
 
 // How many Searches
 
@@ -62,7 +62,7 @@ const traverse = function (arr, start, end) {
 };
 
 
-traverse(preOrderTraversal, 0, preOrderTraversal.length-1);
+// traverse(preOrderTraversal, 0, preOrderTraversal.length-1);
 
 
 // Implement different tree traversals
@@ -85,7 +85,7 @@ sample.insert(66,66);
 sample.insert(90,90);
 sample.insert(22,22);
 
-console.log(sample);
+// console.log(sample);
 
 
 const inOrder = function (tree) {
@@ -109,3 +109,52 @@ const postOrder = function (tree) {
 // preOrder(sample);
 // inOrder(sample);
 // postOrder(sample);
+
+function bfs(tree, values=[]) {
+  const queue = new Queue(); // Assuming a Queue is implemented (refer to previous lesson on Queue)
+
+  queue.enqueue(tree);
+
+  while (queue.first) {
+    const node = queue.dequeue(); //remove from the queue
+
+    values.push(node.value); // add that value from the queue to an array
+
+    if (node.left) {
+      queue.enqueue(node.left); //add left child to the queue
+    }
+
+    if (node.right) {
+      queue.enqueue(node.right); // add right child to the queue
+    }
+  }
+
+  return values;
+}
+
+const officers = new BST();
+
+officers.insert(100, 'Captain Picard');
+officers.insert(90, 'Commander Riker');
+officers.insert(110, 'Commander Data');
+officers.insert(80, 'Lt. Cmdr Worf');
+officers.insert(95, 'Lt. Cmdr LaForge');
+officers.insert(120, 'Lt. Cmdr Crusher');
+officers.insert(70, 'Lieutenant security-officer');
+officers.insert(115, 'Lieutenant Selar');
+
+
+// console.log(officers);
+console.log(bfs(officers));
+
+
+// Answer:
+//
+// Captain Picard                       1
+// Commander Riker                      2 1
+// Commander Data                       2 2
+// Lt. Cmdr Worf                        3 1
+// Lt. Cmdr LaForge                     3 2
+// Lt. Cmdr Crusher                     3 3
+// Lieutenant security-officer          4 1
+// Lieutenant Selar                     4 2
