@@ -145,7 +145,7 @@ officers.insert(115, 'Lieutenant Selar');
 
 
 // console.log(officers);
-console.log(bfs(officers));
+// console.log(bfs(officers));
 
 
 // Answer:
@@ -158,3 +158,28 @@ console.log(bfs(officers));
 // Lt. Cmdr Crusher                     3 3
 // Lieutenant security-officer          4 1
 // Lieutenant Selar                     4 2
+
+
+// Share prices
+
+const sharePrices = [128, 97, 121, 123, 98, 97, 105];
+
+const calcBuyDay = function (sharePrices) {
+
+  let highestGain = 0;
+  let buyDay = null;
+
+  for (let d = 1; d < sharePrices.length; d++) {
+
+    const gain = sharePrices[d] - sharePrices[d-1];
+
+    if (gain > highestGain) {
+      highestGain = gain;
+      buyDay = d-1;
+    }
+  }
+
+  return buyDay;
+};
+
+console.log(calcBuyDay(sharePrices));
